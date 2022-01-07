@@ -44,21 +44,22 @@ public class UserDAO {
 	}
 	
 	public int join(User user) {
-		String SQL = "INSERT INTO USER VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String SQL = "INSERT INTO USER VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		try {
 			pstmt = conn.prepareStatement(SQL);
 			pstmt.setString(1, user.getUserID());;
 			pstmt.setString(2, user.getUserPassword());
 			pstmt.setString(3, user.getUserName());
-			pstmt.setString(4, user.getUserMajor());
-			pstmt.setString(5, user.getUserYear());
-			pstmt.setString(6, user.getUserGrade());
-			pstmt.setString(7, user.getUserLgrade());
-			pstmt.setString(8, user.getUserMchild());
-			pstmt.setString(9, user.getUserIncome());
-			pstmt.setString(10, user.getUserVol());
-			pstmt.setString(11, user.getUserMentor());
-			pstmt.setString(12, user.getUserExam());
+			pstmt.setString(4, user.getUserEmail());
+			pstmt.setString(5, user.getUserMajor());
+			pstmt.setString(6, user.getUserYear());
+			pstmt.setString(7, user.getUserGrade());
+			pstmt.setString(8, user.getUserLgrade());
+			pstmt.setString(9, user.getUserMchild());
+			pstmt.setString(10, user.getUserIncome());
+			pstmt.setString(11, user.getUserVol());
+			pstmt.setString(12, user.getUserMentor());
+			pstmt.setString(13, user.getUserExam());
 			return pstmt.executeUpdate();
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -78,6 +79,7 @@ public class UserDAO {
 				 user.setUserID(rs.getString("userID"));
 				 user.setUserPassword(rs.getString("userPassword"));
 		         user.setUserName(rs.getString("userName"));
+		         user.setUserEmail(rs.getString("userEmail"));
 		         user.setUserYear(rs.getString("userYear"));
 		         user.setUserGrade(rs.getString("userGrade"));
 		         user.setUserLgrade(rs.getString("userLgrade"));
@@ -98,32 +100,73 @@ public class UserDAO {
 	}
 
 
-public boolean modification(User user) throws SQLException {
-	boolean b = false;
-	String SQL = "UPDATE USER SET userPassword = ?, userMajor = ?, userYear = ?, userGrade = ?, userLgrade = ?, userMchild = ?, userIncome = ?, userVol = ?, userMentor = ?, userExam = ? WHERE userID = ?";
-	try {
-		pstmt = conn.prepareStatement(SQL);
-		pstmt.setString(1, user.getUserPassword());
-		pstmt.setString(2, user.getUserMajor());
-		pstmt.setString(3, user.getUserYear());
-		pstmt.setString(4, user.getUserGrade());
-		pstmt.setString(5, user.getUserLgrade());
-		pstmt.setString(6, user.getUserMchild());
-		pstmt.setString(7, user.getUserIncome());
-		pstmt.setString(8, user.getUserVol());
-		pstmt.setString(9, user.getUserMentor());
-		pstmt.setString(10, user.getUserExam());
-		pstmt.setString(11, user.getUserID());
-		if(pstmt.executeUpdate() > 0)
-			b = true;
-	} catch(Exception e) {
-		e.printStackTrace();
-	} finally{
-		   if(rs!=null)	try{rs.close();}catch(SQLException ex){}
-		   if(pstmt!=null)	try{pstmt.close();}catch(SQLException ex){}
-		   if(conn!=null)	try{conn.close();}catch(SQLException ex){}
-		  }
-	return b;
+	public boolean modification(User user) throws SQLException {
+		boolean b = false;
+		String SQL = "UPDATE USER SET userPassword = ?, userMajor = ?, userYear = ?, userGrade = ?, userLgrade = ?, userMchild = ?, userIncome = ?, userVol = ?, userMentor = ?, userExam = ? WHERE userID = ?";
+		try {
+			pstmt = conn.prepareStatement(SQL);
+			pstmt.setString(1, user.getUserPassword());
+			pstmt.setString(2, user.getUserMajor());
+			pstmt.setString(3, user.getUserYear());
+			pstmt.setString(4, user.getUserGrade());
+			pstmt.setString(5, user.getUserLgrade());
+			pstmt.setString(6, user.getUserMchild());
+			pstmt.setString(7, user.getUserIncome());
+			pstmt.setString(8, user.getUserVol());
+			pstmt.setString(9, user.getUserMentor());
+			pstmt.setString(10, user.getUserExam());
+			pstmt.setString(11, user.getUserID());
+			if(pstmt.executeUpdate() > 0)
+				b = true;
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally{
+			   if(rs!=null)	try{rs.close();}catch(SQLException ex){}
+			   if(pstmt!=null)	try{pstmt.close();}catch(SQLException ex){}
+			   if(conn!=null)	try{conn.close();}catch(SQLException ex){}
+			  }
+		return b;
+	}
+
+	public String findid(String userName, String userEmail) {
+		String SQL = "SELECT userID FROM USER WHERE userName = ? AND userEmail = ?"; //명령을 사용해서 가져온다
+		String userID = null;
+		try {
+			pstmt = conn.prepareStatement(SQL);//SQL 문장을 데이터베이스에 삽입하는
+			pstmt.setString(1, userName); //중요, SQL 해킹 기법 방어하기 위한 수단으로 preapredStatement 사용하는데 하나의 문장 준비해놓고 ? 넣어놓고 ?에 해당하는 내용으로 userID를 넣어줌. 실제 데이터베이스에는 사용자 아이디 입력받아서 실제로 존재하는지 존재한다면 비밀번호가 뭔지 가져오도록 하는 것
+			pstmt.setString(2, userEmail);
+			rs = pstmt.executeQuery();
+			if (rs.next()) { //결과 존재하면
+				userID = rs.getString("userID");
+			}
+			else {
+				userID = null;
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return userID;
+	}
+	
+	public String findpw(String userID, String userName, String userEmail) {
+		String SQL = "SELECT userPassword FROM USER WHERE userID = ? AND userName = ? AND userEmail = ?"; //명령을 사용해서 가져온다
+		String userPassword = null;
+		try {
+			pstmt = conn.prepareStatement(SQL);//SQL 문장을 데이터베이스에 삽입하는
+			pstmt.setString(1, userID); //중요, SQL 해킹 기법 방어하기 위한 수단으로 preapredStatement 사용하는데 하나의 문장 준비해놓고 ? 넣어놓고 ?에 해당하는 내용으로 userID를 넣어줌. 실제 데이터베이스에는 사용자 아이디 입력받아서 실제로 존재하는지 존재한다면 비밀번호가 뭔지 가져오도록 하는 것
+			pstmt.setString(2, userName);
+			pstmt.setString(3, userEmail);
+			rs = pstmt.executeQuery();
+			if (rs.next()) { //결과 존재하면
+				userPassword = rs.getString("userPassword");
+			}
+			else {
+				userPassword = null;
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return userPassword;
 	}
 }
 	

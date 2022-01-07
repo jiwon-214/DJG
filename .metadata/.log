@@ -4823,3 +4823,115 @@ This warning can be switched off on the Team > Git > Confirmations and Warnings 
 
 !ENTRY org.eclipse.jst.server.tomcat.core 1 0 2022-01-05 18:47:24.055
 !MESSAGE Skipping argument '-Djava.endorsed.dirs=C:\JSP\apache-tomcat-8.5.32-windows-x64\apache-tomcat-8.5.32\endorsed' while launching Tomcat10
+!SESSION 2022-01-08 02:29:51.145 -----------------------------------------------
+eclipse.buildId=4.21.0.I20210906-0500
+java.version=16.0.2
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=ko_KR
+Framework arguments:  -product org.eclipse.epp.package.jee.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.jee.product
+
+!ENTRY org.eclipse.core.resources 2 10035 2022-01-08 02:30:03.161
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+
+!ENTRY org.eclipse.jface 2 0 2022-01-08 02:30:04.708
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2022-01-08 02:30:04.708
+!MESSAGE A conflict occurred for CTRL+SHIFT+T:
+Binding(CTRL+SHIFT+T,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.navigate.open.type,Open Type,
+		Open a type in a Java editor,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@73a88711,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(CTRL+SHIFT+T,
+	ParameterizedCommand(Command(org.eclipse.lsp4e.symbolinworkspace,Go to Symbol in Workspace,
+		,
+		Category(org.eclipse.lsp4e.category,Language Servers,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@5978ba12,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+
+!ENTRY org.eclipse.ui.navigator 2 0 2022-01-08 02:30:07.703
+!MESSAGE Can't find Navigator Content Descriptor with id: org.eclipse.jst.servlet.ui.EnhancedJavaRendering
+
+!ENTRY org.eclipse.ui.navigator 2 0 2022-01-08 02:30:07.703
+!MESSAGE Can't find Navigator Content Descriptor with id: org.eclipse.jst.servlet.ui.EnhancedJavaRendering
+
+!ENTRY org.eclipse.egit.ui 2 0 2022-01-08 02:30:07.748
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\jiwon'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.jst.server.tomcat.core 1 0 2022-01-08 02:30:17.732
+!MESSAGE Skipping argument '-Djava.endorsed.dirs=C:\JSP\apache-tomcat-8.5.32-windows-x64\apache-tomcat-8.5.32\endorsed' while launching Tomcat10
+!SESSION 2022-01-08 02:38:33.191 -----------------------------------------------
+eclipse.buildId=4.21.0.I20210906-0500
+java.version=16.0.2
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=ko_KR
+Framework arguments:  -product org.eclipse.epp.package.jee.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.jee.product
+
+!ENTRY org.eclipse.core.resources 2 10035 2022-01-08 02:38:47.051
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+
+!ENTRY org.eclipse.jface 2 0 2022-01-08 02:38:48.656
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2022-01-08 02:38:48.656
+!MESSAGE A conflict occurred for CTRL+SHIFT+T:
+Binding(CTRL+SHIFT+T,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.navigate.open.type,Open Type,
+		Open a type in a Java editor,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@73a88711,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(CTRL+SHIFT+T,
+	ParameterizedCommand(Command(org.eclipse.lsp4e.symbolinworkspace,Go to Symbol in Workspace,
+		,
+		Category(org.eclipse.lsp4e.category,Language Servers,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@5978ba12,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+
+!ENTRY org.eclipse.ui.navigator 2 0 2022-01-08 02:38:52.035
+!MESSAGE Can't find Navigator Content Descriptor with id: org.eclipse.jst.servlet.ui.EnhancedJavaRendering
+
+!ENTRY org.eclipse.ui.navigator 2 0 2022-01-08 02:38:52.036
+!MESSAGE Can't find Navigator Content Descriptor with id: org.eclipse.jst.servlet.ui.EnhancedJavaRendering
+
+!ENTRY org.eclipse.egit.ui 2 0 2022-01-08 02:38:52.069
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\jiwon'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.jst.server.tomcat.core 1 0 2022-01-08 02:39:20.407
+!MESSAGE Skipping argument '-Djava.endorsed.dirs=C:\JSP\apache-tomcat-8.5.32-windows-x64\apache-tomcat-8.5.32\endorsed' while launching Tomcat10
+
+!ENTRY org.eclipse.jst.server.tomcat.core 1 0 2022-01-08 03:38:44.787
+!MESSAGE Skipping argument '-Djava.endorsed.dirs=C:\JSP\apache-tomcat-8.5.32-windows-x64\apache-tomcat-8.5.32\endorsed' while launching Tomcat10
+
+!ENTRY org.eclipse.jst.server.tomcat.core 1 0 2022-01-08 03:38:45.493
+!MESSAGE Skipping argument '-Djava.endorsed.dirs=C:\JSP\apache-tomcat-8.5.32-windows-x64\apache-tomcat-8.5.32\endorsed' while launching Tomcat10
+
+!ENTRY org.eclipse.jst.server.tomcat.core 1 0 2022-01-08 04:41:02.399
+!MESSAGE Skipping argument '-Djava.endorsed.dirs=C:\JSP\apache-tomcat-8.5.32-windows-x64\apache-tomcat-8.5.32\endorsed' while launching Tomcat10
+
+!ENTRY org.eclipse.jst.server.tomcat.core 1 0 2022-01-08 04:41:03.172
+!MESSAGE Skipping argument '-Djava.endorsed.dirs=C:\JSP\apache-tomcat-8.5.32-windows-x64\apache-tomcat-8.5.32\endorsed' while launching Tomcat10
+
+!ENTRY org.eclipse.jst.server.tomcat.core 1 0 2022-01-08 06:15:27.257
+!MESSAGE Skipping argument '-Djava.endorsed.dirs=C:\JSP\apache-tomcat-8.5.32-windows-x64\apache-tomcat-8.5.32\endorsed' while launching Tomcat10
+
+!ENTRY org.eclipse.jst.server.tomcat.core 1 0 2022-01-08 06:15:27.828
+!MESSAGE Skipping argument '-Djava.endorsed.dirs=C:\JSP\apache-tomcat-8.5.32-windows-x64\apache-tomcat-8.5.32\endorsed' while launching Tomcat10

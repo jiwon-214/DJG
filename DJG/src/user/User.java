@@ -4,6 +4,7 @@ public class User {
 	private String userID;
 	private String userPassword;
 	private String userName;
+	private String userEmail;
 	private String userMajor;
 	private String userYear;
 	private String userGrade;
@@ -31,6 +32,12 @@ public class User {
 	}
 	public void setUserName(String userName) {
 		this.userName = userName;
+	}
+	public String getUserEmail() {
+		return userEmail;
+	}
+	public void setUserEmail(String userEmail) {
+		this.userEmail = userEmail;
 	}
 	public String getUserMajor() {
 		return userMajor;

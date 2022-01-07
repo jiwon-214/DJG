@@ -56,6 +56,9 @@
                   <input type="text" class="form-control" placeholder="이름" name="userName" maxlength="20">
                </div>
                <div class="form-group">
+               	  <input type="Email" class="form-control" placeholder="이메일" name="userEmail" maxlength="30">
+               </div>
+               <div class="form-group">
                <select name="dept" onchange="changeDpt(this)">
                         <option value="none" selected disabled>학부</option>
                         <option value="인문과학대학">인문과학대학</option>

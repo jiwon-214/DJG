@@ -32,6 +32,13 @@
 		if(session.getAttribute("userID") != null) {
 			userID = (String) session.getAttribute("userID"); //세션아이디 담을 수 있도록
 		}
+		if (userID == null) {
+			PrintWriter script = response.getWriter();
+			script.println("<script>");
+			script.println("alert('로그인이 필요합니다.')");
+			script.println("location.href = 'main.jsp'");
+			script.println("</script>");
+		}
 		if (userID != null) { //이미 로그인이 된 경우
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
@@ -63,6 +70,7 @@
 				session.setAttribute("userID", user.getUserID());
 				PrintWriter script = response.getWriter();
 				script.println("<script>");
+				script.println("alert('회원 가입이 완료되었습니다.')");
 				script.println("location.href = 'main.jsp'");
 				script.println("</script>");
 			}

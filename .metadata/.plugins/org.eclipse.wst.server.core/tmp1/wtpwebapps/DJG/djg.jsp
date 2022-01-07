@@ -20,7 +20,13 @@
 		if (session.getAttribute("userID") != null) {
 			userID = (String) session.getAttribute("userID");
 		} //로그인되면 userID에 해당 이이디가 담기고 로그인 안되면 null
-		
+		if (userID == null) {
+			PrintWriter script = response.getWriter();
+			script.println("<script>");
+			script.println("alert('로그인이 필요합니다!')");
+			script.println("location.href = 'login.jsp'");
+			script.println("</script>");
+		}
 	%>
 	<nav class ="navbar navbar-default">
 		<div class = "navbar-header">
@@ -66,6 +72,7 @@
 						aria-expanded="false">회원관리<span class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a href = "modification.jsp">정보수정</a></li>
+						<li><a href = "info.jsp">정보 확인</a></li>
 						<li><a href = "logoutAction.jsp">로그아웃 </a></li>
 					</ul>
 				</li>

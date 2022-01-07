@@ -7,6 +7,7 @@
 <jsp:setProperty name="user" property="userID" /> <%--로그인 페이지에서 넘겨준 userID를 받아서 넣어줌--%>
 <jsp:setProperty name="user" property="userPassword" />
 <jsp:setProperty name="user" property="userName" /> 
+<jsp:setProperty name="user" property="userEmail" />
 <jsp:setProperty name="user" property="userMajor" />
 <jsp:setProperty name="user" property="userYear" /> 
 <jsp:setProperty name="user" property="userGrade" />
@@ -46,7 +47,7 @@
 		long userLgrade = Long.parseLong(toeic);
 		
 		
-			if (user.getUserID() == null || user.getUserPassword() == null || user.getUserName() == null
+			if (user.getUserID() == null || user.getUserPassword() == null || user.getUserName() == null || user.getUserEmail() == null
 				|| user.getUserMajor() == null || user.getUserYear() == null || user.getUserGrade() == null
 				|| user.getUserLgrade() ==  null || user.getUserMchild() == null || user.getUserIncome() == null
 				|| user.getUserVol() == null || user.getUserMentor() == null || user.getUserExam() == null) {
@@ -88,6 +89,7 @@
 				session.setAttribute("userID", user.getUserID());
 				PrintWriter script = response.getWriter();
 				script.println("<script>");
+				script.println("alert('회원 가입이 완료되었습니다.')");
 				script.println("location.href = 'main.jsp'");
 				script.println("</script>");
 			}

@@ -54,6 +54,9 @@
 					</div>
 					<input type="submit" class="btn btn-primary form-control" value="로그인">
 				</form>
+				<div class="link" style="text-align:center;">
+					<a href="findID.jsp">학번 찾기</a> | <a href= "findPW.jsp">비밀번호 찾기</a> | <a href= "join.jsp">회원가입</a>
+				</div>
 			</div>
 		</div>
 		<div class="col-lg-4"></div>
