@@ -64,7 +64,8 @@
 					<ul class="dropdown-menu">
 						<li><a href = "modification.jsp">정보수정</a></li>
 						<li><a href = "info.jsp">정보 확인</a></li>
-						<li><a href = "logoutAction.jsp">로그아웃 </a></li>
+						<li><a href = "logoutAction.jsp">로그아웃</a></li>
+						<li><a href = "withdraw.jsp">탈퇴하기</a></li>
 					</ul>
 				</li>
 			</ul>

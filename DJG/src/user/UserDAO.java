@@ -168,5 +168,32 @@ public class UserDAO {
 		}
 		return userPassword;
 	}
+	
+	public boolean delete(String userID, String userPassword) {
+		String SQL = "SELECT userPassword FROM USER WHERE userID = ?";
+		boolean result = false;
+		try {
+			pstmt = conn.prepareStatement(SQL);
+			pstmt.setString(1, userID);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				if(rs.getString(1).equals(userPassword)) {
+					String delSQL = "DELETE FROM USER WHERE userID = ?";
+					pstmt = conn.prepareStatement(delSQL);
+					pstmt.setString(1, userID);
+					pstmt.executeUpdate();
+					result = true;
+				}
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {rs.close();} catch(SQLException ex) {}
+			try {pstmt.close();} catch(SQLException ex) {}
+			try {conn.close();} catch(SQLException ex) {}
+		}
+		return result;
+	}
 }
 	

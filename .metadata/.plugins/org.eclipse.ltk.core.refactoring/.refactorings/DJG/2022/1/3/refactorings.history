@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;DJG/WebContent/secession.jsp&apos; to &apos;withdraw.jsp&apos;" description="Rename resource &apos;secession.jsp&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="WebContent/secession.jsp" name="withdraw.jsp" stamp="1641848595995" updateReferences="true"/>
+</session>

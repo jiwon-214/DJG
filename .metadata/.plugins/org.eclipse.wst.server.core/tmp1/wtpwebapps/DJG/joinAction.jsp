@@ -47,6 +47,7 @@
 		long userLgrade = Long.parseLong(toeic);
 		
 		
+		
 			if (user.getUserID() == null || user.getUserPassword() == null || user.getUserName() == null || user.getUserEmail() == null
 				|| user.getUserMajor() == null || user.getUserYear() == null || user.getUserGrade() == null
 				|| user.getUserLgrade() ==  null || user.getUserMchild() == null || user.getUserIncome() == null

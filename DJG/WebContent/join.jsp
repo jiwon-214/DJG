@@ -50,8 +50,13 @@
                   <input type="text" class="form-control" placeholder="학번" name="userID" maxlength="10">
                </div>
                <div class="form-group">
-                  <input type="password" class="form-control" placeholder="비밀번호" name="userPassword" maxlength="20">
+                  <input type="password" class="form-control" placeholder="비밀번호" name="userPassword" id="userPassword" maxlength="20" onchange="password()">
                </div>
+               <div class="form-group">
+                  <input type="password" class="form-control" placeholder="비밀번호 확인" name="userPassword" id="userPassword_again" maxlength="20" onchange="password()">
+               	  &nbsp;
+               <span id="check"></span>
+               </div>           
                <div class="form-group">
                   <input type="text" class="form-control" placeholder="이름" name="userName" maxlength="20">
                </div>
@@ -59,7 +64,7 @@
                	  <input type="Email" class="form-control" placeholder="이메일" name="userEmail" maxlength="30">
                </div>
                <div class="form-group">
-               <select name="dept" onchange="changeDpt(this)">
+               <select class="form-select" name="dept" onchange="changeDpt(this)" aria-label="Default select example">
                         <option value="none" selected disabled>학부</option>
                         <option value="인문과학대학">인문과학대학</option>
                         <option value="사회과학대학">사회과학대학</option>
@@ -115,10 +120,10 @@
                <div class="form-group" style="text-align:center;">
                   <div class="btn-group" data-toggle="buttons">
                      <label class="btn btn-primary active">
-                        <input type = "radio" name ="userMchild" autocomplete="off" value="cO" checked>다자녀O
+                        <input type = "radio" name ="userMchild" autocomplete="off" value="다자녀_해당" checked>다자녀 해당
                      </label>
                      <label class="btn btn-primary active">
-                        <input type = "radio" name ="userMchild" autocomplete="off" value="cX">다자녀X
+                        <input type = "radio" name ="userMchild" autocomplete="off" value="다자녀_미해당">다자녀 미해당
                      </label>
                   </div>
                </div>
@@ -130,10 +135,10 @@
                <div class="form-group" style="text-align:center;">
                   <div class="btn-group" data-toggle="buttons">
                      <label class="btn btn-primary active">
-                        <input type="radio" name="userMentor" autocomplete="off" value="mO" checked>멘토링O
+                        <input type="radio" name="userMentor" autocomplete="off" value="멘토링_수행" checked>멘토링 수행
                      </label>
                      <label class="btn btn-primary active">
-                        <input type = "radio" name="userMentor" autocomplete="off" value="mX">멘토링X
+                        <input type = "radio" name="userMentor" autocomplete="off" value="멘토링_미수행">멘토링 미수행
                      </label>
                   </div>
                </div>
@@ -142,16 +147,16 @@
                <div class="form-group" style="text-align:center;">
                   <div class="btn-group" data-toggle="buttons">
                      <label class="btn btn-primary active">
-                        <input type="radio" name="userVol" autocomplete="off" value="Vx" checked>해당없음
+                        <input type="radio" name="userVol" autocomplete="off" value="봉사등급_없음" checked>해당없음
                      </label>
                      <label class="btn btn-primary active">
-                        <input type="radio" name="userVol" autocomplete="off" value="Va">A
+                        <input type="radio" name="userVol" autocomplete="off" value="A등급">A
                      </label>
                      <label class="btn btn-primary active">
-                        <input type="radio" name="userVol" autocomplete="off" value="Vb">B
+                        <input type="radio" name="userVol" autocomplete="off" value="B등급">B
                      </label>
                      <label class="btn btn-primary active">
-                        <input type="radio" name="userVol" autocomplete="off" value="Vc">C
+                        <input type="radio" name="userVol" autocomplete="off" value="C등급">C
                      </label>
                   </div>
                </div>
@@ -160,16 +165,16 @@
                <div class="form-group" style="text-align:center;">
                   <div class="btn-group" data-toggle="buttons">
                      <label class="btn btn-primary active">
-                        <input type="radio" name="userExam" autocomplete="off" value="Ex" checked>국가고시 해당없음
+                        <input type="radio" name="userExam" autocomplete="off" value="국가고시X" checked>국가고시 해당없음
                      </label>
                      <label class="btn btn-primary active">
-                        <input type="radio" name="userExam" autocomplete="off" value="E9">9급 이상
+                        <input type="radio" name="userExam" autocomplete="off" value="9급_이상">9급 이상
                      </label>
                      <label class="btn btn-primary active">
-                        <input type="radio" name="userExam" autocomplete="off" value="E7">7급 이상
+                        <input type="radio" name="userExam" autocomplete="off" value="7급_이상">7급 이상
                      </label>
                      <label class="btn btn-primary active">
-                        <input type="radio" name="userExam" autocomplete="off" value="E5">5급 이상
+                        <input type="radio" name="userExam" autocomplete="off" value="5급_이상">5급 이상
                      </label>
                   </div>
                </div>
@@ -233,6 +238,22 @@
             target.appendChild(opt);
         }
     }
+    
+    function password() {
+    	var pw = document.getElementById('userPassword').value;
+    	var pw2 = document.getElementById('userPassword_again').value;
+    	
+    	if(pw != pw2) {
+    		document.getElementById('check').innerHTML = '비밀번호가 일치하지 않습니다.';
+    		document.getElementById('check').style.color = 'red';
+    		return true;
+    	} else {
+    		document.getElementById('check').innerHTML = '비밀번호가 일치합니다.';
+    		document.getElementById('check').style.color = 'blue';
+    		return false;
+    	}
+    }
+    
 </script>
 	<script src = "https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src = "js/bootstrap.js"></script>

@@ -64,6 +64,7 @@
 						data-toggle="dropdown" role="button" aria-haspopup="true"
 						aria-expanded="false">회원관리<span class="caret"></span></a>
 					<ul class="dropdown-menu">
+						<li><a href = "info.jsp">정보 확인</a></li>
 						<li><a href = "logoutAction.jsp">로그아웃 </a></li>
 					</ul>
 				</li>
@@ -109,7 +110,7 @@
                </div> --%>
                <div class="form-group">
                전공
-               <select name="dept" onchange="changeDpt(this)" aria-label="Default select example">
+               <select name="dept" onchange="changeDpt(this)" aria-label="Default select example" value=<%=user.getUserMajor() %>>
                         <option value="none" selected disabled>학부</option>
                         <option value="인문과학대학">인문과학대학</option>
                         <option value="사회과학대학">사회과학대학</option>
