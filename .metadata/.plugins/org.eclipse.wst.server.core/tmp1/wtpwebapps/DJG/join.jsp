@@ -23,6 +23,7 @@
 		</div>
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class = "nav navbar-nav">
+				<li><a href="board.jsp">게시판</a></li>
 				<li><a href="https://portal.sungshin.ac.kr/sso/login.jsp">성신여대</a></li>
 				<li><a href="http://www.kosaf.go.kr/">한국장학재단</a></li>
 				<li><a href="https://rule.sungshin.ac.kr/service/law/lawView.do?seq=95&historySeq=0&gubun=cur&tree=part">성신장학규정</a></li>
@@ -44,7 +45,7 @@
       <div class="col-lg-4"></div>
       <div class="col-lg-4">
          <div class="jumbotron" style="padding-top:20px;">
-            <form method="post" action="joinAction.jsp">
+            <form method="post" action="joinAction.jsp" onSubmit = "return !!(grade() & lgrade())">
                <h3 style="text-align:center;">대장금 회원가입</h3>
                <div class="form-group">
                   <input type="text" class="form-control" placeholder="학번" name="userID" maxlength="10">
@@ -109,11 +110,11 @@
                </div>
                
                <div class="form-group">
-                  <input type="text" class="form-control" placeholder="학점" name="userGrade" maxlength="10">
+                  <input type="text" class="form-control" placeholder="학점" name="userGrade" id="userGrade" maxlength="10">
                </div>
                
                <div class="form-group">
-                  <input type="text" class="form-control" placeholder="어학성적" name="userLgrade" maxlength="10">
+                  <input type="text" class="form-control" placeholder="어학성적" name="userLgrade" id="userLgrade" maxlength="10">
                </div>
                
                <h5>다자녀 유무</h5>
@@ -254,6 +255,23 @@
     	}
     }
     
+    function grade() {
+    	var userGrade = document.getElementById('userGrade').value;
+	    if(userGrade < 0.0 || userGrade > 4.5) {
+			alert('학점의 범위가 올바르지 않습니다.');
+			return false;
+		}
+	    return true;
+	}
+	
+    function lgrade() {
+    	var userLgrade = document.getElementById('userLgrade').value;
+		if(userLgrade < 0 || userLgrade > 990) {
+			alert('어학 점수의 범위가 올바르지 않습니다.');
+			return false;
+		}
+		return true;
+	}
 </script>
 	<script src = "https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src = "js/bootstrap.js"></script>

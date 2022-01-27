@@ -71,6 +71,7 @@
                <span id="check"></span>
                </div>           
                <input type="submit" class="btn btn-primary form-control" value="탈퇴하기">
+               <input type="button" class="btn btn-primary form-control" value="취소하기" onClick="location.href='main.jsp'">
             </form>
          </div>
       </div>
@@ -93,10 +94,8 @@
     }
 	
 	function checkpw() {
-		if(document.getElementById('userPassword').value != user.getUserPassword()) {
-			PrinterWriter script = response.getWriter();
-			script.println("alert('비밀번호가 올바르지 않습니다. 다시 입력해주세요.')");
-			script.println("histroy.back()");
+		if(document.getElementById('userPassword').value != document.getElementById('userPassword_again').value) {
+			alert('비밀번호가 일치하지 않습니다. 다시 입력해주세요.');
 			return false;
 		}
 	}

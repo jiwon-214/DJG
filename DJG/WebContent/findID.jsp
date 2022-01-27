@@ -23,6 +23,7 @@
 		</div>
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class = "nav navbar-nav">
+				<li><a href="board.jsp">게시판</a></li>
 				<li><a href="https://portal.sungshin.ac.kr/sso/login.jsp">성신여대</a></li>
 				<li><a href="http://www.kosaf.go.kr/">한국장학재단</a></li>
 				<li><a href="https://rule.sungshin.ac.kr/service/law/lawView.do?seq=95&historySeq=0&gubun=cur&tree=part">성신장학규정</a></li>

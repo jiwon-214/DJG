@@ -70,18 +70,13 @@
 	<% session.invalidate(); %>
 	<%	}
 	
-		else { //비밀번호가 틀릴때 %>
-			<div class="container" style="text-align:center;">
-				<div class ="jumbotron">  
-				<h3>	
-					탈퇴가 진행되지 않았습니다. 다시 시도해주세요.
-				</h3>
-				</div>
-				<div class="link" style="text-align:center;">
-					<a href= "withdraw.jsp">탈퇴하기</a>
-				</div>
-			</div>
-	<%	}
+		else { //비밀번호가 틀릴때 
+			PrintWriter script = response.getWriter();
+			script.println("<script>");
+			script.println("alert('비밀번호가 올바르지 않습니다. 비밀번호를 확인해주세요.')");
+			script.println("history.back()"); //이전의 페이지(로그인)로 돌려보내는 것
+			script.println("</script>");
+		}
 		%>
 <script src = "https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src = "js/bootstrap.js"></script>

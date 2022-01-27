@@ -48,32 +48,18 @@
 		
 		
 		
-			if (user.getUserID() == null || user.getUserPassword() == null || user.getUserName() == null || user.getUserEmail() == null
-				|| user.getUserMajor() == null || user.getUserYear() == null || user.getUserGrade() == null
-				|| user.getUserLgrade() ==  null || user.getUserMchild() == null || user.getUserIncome() == null
-				|| user.getUserVol() == null || user.getUserMentor() == null || user.getUserExam() == null) {
-				PrintWriter script = response.getWriter();
-				script.println("<script>");
-				script.println("alert('입력이 안 된 사항이 있습니다.')");
-				script.println("history.back()"); //이전의 페이지(회원가입)로 돌려보내는 것
-				script.println("</script>");
-			}
+		if (user.getUserID() == null || user.getUserPassword() == null || user.getUserName() == null || user.getUserEmail() == null
+			|| user.getUserMajor() == null || user.getUserYear() == null || user.getUserGrade() == null
+			|| user.getUserLgrade() ==  null || user.getUserMchild() == null || user.getUserIncome() == null
+			|| user.getUserVol() == null || user.getUserMentor() == null || user.getUserExam() == null) {
+			PrintWriter script = response.getWriter();
+			script.println("<script>");
+			script.println("alert('입력이 안 된 사항이 있습니다.')");
+			script.println("history.back()"); //이전의 페이지(회원가입)로 돌려보내는 것
+			script.println("</script>");
+		}
 			
-			if(userGrade < 0.0 || userGrade > 4.5) {
-				PrintWriter script = response.getWriter();
-				script.println("<script>");
-				script.println("alert('학점의 범위가 올바르지 않습니다.')");
-				script.println("history.back()"); //이전의 페이지(회원가입)로 돌려보내는 것
-				script.println("</script>");
-			}
 			
-			if(userLgrade < 0 || userLgrade > 990) {
-				PrintWriter script = response.getWriter();
-				script.println("<script>");
-				script.println("alert('어학 점수의 범위가 올바르지 않습니다.')");
-				script.println("history.back()"); //이전의 페이지(회원가입)로 돌려보내는 것
-				script.println("</script>");
-			}
 		
 		else {
 			UserDAO userDAO = new UserDAO(); 
