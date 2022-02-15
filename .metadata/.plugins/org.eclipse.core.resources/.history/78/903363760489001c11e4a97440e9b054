@@ -1,0 +1,144 @@
+package comment;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+
+import comment.Comment;
+
+public class CommentDAO {
+	private Connection conn;
+	private ResultSet rs;
+	
+	public CommentDAO() { //실제로 MySQL에 접속해주는 부분
+		try {
+			String dbURL = "jdbc:mysql://localhost:3306/DJG?characterEncoding=UTF-8&serverTimezone=UTC";
+			String dbID = "root";
+			String dbPassword = "twins5302";
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			conn = DriverManager.getConnection(dbURL, dbID, dbPassword);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public String getDate() { //현재 시간을 가져오는 함수, 게시판 게시글 작성할 때 작성시간을 넣어줌
+		String SQL = "SELECT NOW()";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				return rs.getString(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return ""; //데이터베이스 오류
+	}
+	
+	public int getNext() {
+		String SQL = "SELECT commentID FROM Comment ORDER BY commentID DESC";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				return rs.getInt(1) + 1;
+			}
+			return 1; //첫 번째 게시물인 경우
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -1; //데이터베이스 오류
+	}
+	
+	public int write(int boardID, String userID, String commentContent) {
+		String SQL = "INSERT INTO Comment VALUES (?, ?, ?, ?, ?, ?)";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1, getNext()); //값을 하나씩 넣어줄 수 있도록, 다음에 쓰여야 할 게시글 번호
+			pstmt.setInt(2, boardID);
+			pstmt.setString(3, userID);
+			pstmt.setString(4, getDate());
+			pstmt.setString(5, commentContent);
+			pstmt.setInt(6, 1); //available이니까 글 작성했을때 글 보여지는 형태
+			return pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -1; //데이터베이스 오류
+	}
+	
+	public ArrayList<Comment> getList(int boardID) {
+		String SQL = "SELECT * FROM Comment WHERE boardID = ? AND commentAvailable = 1 ORDER BY boardID DESC";
+		ArrayList<Comment> list = new ArrayList<Comment>();
+		
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1, boardID);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				Comment comment = new Comment();
+				comment.setCommentID(rs.getInt(1));
+				comment.setBoardID(rs.getInt(2));
+				comment.setUserID(rs.getString(3));
+				comment.setCommentDate(rs.getString(4));
+				comment.setCommentContent(rs.getString(5));
+				comment.setCommentAvailable(rs.getInt(6));
+				
+				list.add(comment);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list; 
+	}
+	
+	public Comment getComment(int commentID) { //게시판의 글 내용을 불러오는 함수
+		String SQL = "SELECT * FROM Comment WHERE commentID = ?";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1, commentID);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				Comment comment = new Comment();
+				comment.setCommentID(rs.getInt(1));
+				comment.setBoardID(rs.getInt(2));
+				comment.setUserID(rs.getString(3));
+				comment.setCommentDate(rs.getString(4));
+				comment.setCommentContent(rs.getString(5));
+				comment.setCommentAvailable(rs.getInt(6));
+				return comment;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public int update(int commentID, String commentContent) {
+		String SQL = "UPDATE Comment SET commentContent = ? WHERE commentID = ?";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setString(1, commentContent); //값을 하나씩 넣어줄 수 있도록, 다음에 쓰여야 할 게시글 번호
+			pstmt.setInt(2, commentID);
+			return pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -1; //데이터베이스 오류
+	}
+	
+	public int delete(int commentID) {
+		String SQL = "UPDATE Comment SET commentAvailable = 0 WHERE commentID = ?"; //글을 삭제하더라도 글에 대한 정보가 남아있도록
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1, commentID); 
+			return pstmt.executeUpdate(); //반환값으로 성공여부 알 수 있음
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -1; //데이터베이스 오류
+	}
+}

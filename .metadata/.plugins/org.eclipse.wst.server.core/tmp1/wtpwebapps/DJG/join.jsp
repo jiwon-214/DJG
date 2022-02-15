@@ -65,7 +65,7 @@
                	  <input type="Email" class="form-control" placeholder="이메일" name="userEmail" maxlength="30">
                </div>
                <div class="form-group">
-               <select class="form-select" name="dept" onchange="changeDpt(this)" aria-label="Default select example">
+               <select class="form-control mb-3" aria-label="Default select example" name="dept" onchange="changeDpt(this)" aria-label="Default select example">
                         <option value="none" selected disabled>학부</option>
                         <option value="인문과학대학">인문과학대학</option>
                         <option value="사회과학대학">사회과학대학</option>
@@ -82,7 +82,7 @@
                </select>
 				</div>
 				<div class="form-group">
-                    <select name="userMajor" id="userMajor">
+                    <select class="form-control mb-3" name="userMajor" id="userMajor">
                         <option selected disabled>학과</option>
                     </select>
                 </div> 

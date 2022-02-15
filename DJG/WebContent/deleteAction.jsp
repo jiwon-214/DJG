@@ -54,7 +54,7 @@
 					script.println("history.back()"); //이전의 페이지로 돌려보내는 것
 					script.println("</script>");
 				}	
-				else { //글 작성 완료되면 바로 메인페이지로
+				else { //글 삭제 완료되면 바로 게시판페이지로
 					PrintWriter script = response.getWriter();
 					script.println("<script>");
 					script.println("alert('게시글 삭제가 완료되었습니다.')");

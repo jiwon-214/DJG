@@ -97,6 +97,7 @@
 						<th style="background-color: #eeeeee; text-align:center;">학번 </th>
 						<th style="background-color: #eeeeee; text-align:center;">이름 </th>
 						<th style="background-color: #eeeeee; text-align:center;">학년 </th>
+						<th style="background-color: #eeeeee; text-align:center;">전공 </th>
 						<th style="background-color: #eeeeee; text-align:center;">학점 </th>
 						<th style="background-color: #eeeeee; text-align:center;">어학점수 </th>
 						<th style="background-color: #eeeeee; text-align:center;">다자녀</th>
@@ -111,6 +112,7 @@
 						<td><%out.println(user.getUserID()); %></td>
 						<td><%out.println(user.getUserName()); %></td>
 						<td><%out.println(user.getUserYear()); %></td>
+						<td><%out.println(user.getUserMajor()); %></td>
 						<td><%out.println(user.getUserGrade()); %></td>
 						<td><%out.println(user.getUserLgrade()); %></td>
 						<td><%out.println(user.getUserMchild()); %></td>

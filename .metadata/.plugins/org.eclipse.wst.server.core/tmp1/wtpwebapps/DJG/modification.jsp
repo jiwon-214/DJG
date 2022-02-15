@@ -34,7 +34,7 @@
 		</div>
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class = "nav navbar-nav">
-				<li class="active"><a href="main.jsp">대장금</a></li>
+				<li><a href="main.jsp">대장금</a></li>
 				<li><a href="djg.jsp">장학금 찾기</a></li>
 				<li><a href="board.jsp">게시판</a></li>
 				<li><a href="https://portal.sungshin.ac.kr/sso/login.jsp">성신여대</a></li>
@@ -67,6 +67,7 @@
 					<ul class="dropdown-menu">
 						<li><a href = "info.jsp">정보 확인</a></li>
 						<li><a href = "logoutAction.jsp">로그아웃 </a></li>
+						<li><a href = "withdraw.jsp">탈퇴하기</a></li>
 					</ul>
 				</li>
 			</ul>
@@ -111,7 +112,7 @@
                </div> --%>
                <div class="form-group">
                전공
-               <select name="dept" onchange="changeDpt(this)" aria-label="Default select example" value=<%=user.getUserMajor() %>>
+               <select class= "form-control mb-3" name="dept" onchange="changeDpt(this)" aria-label="Default select example" value=<%=user.getUserMajor() %>>
                         <option value="none" selected disabled>학부</option>
                         <option value="인문과학대학">인문과학대학</option>
                         <option value="사회과학대학">사회과학대학</option>
@@ -128,7 +129,7 @@
                </select>
 				</div>
 				<div class="form-group">
-                    <select name="userMajor" id="userMajor">
+                    <select class= "form-control mb-3" name="userMajor" id="userMajor">
                         <option selected disabled>학과</option>
                     </select>
                 </div> 

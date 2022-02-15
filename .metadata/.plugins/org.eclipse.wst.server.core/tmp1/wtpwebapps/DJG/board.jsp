@@ -17,6 +17,18 @@
 		color: #000000;
 		text-decoraion: none;
 	}
+	
+	.search-box {
+        width: 40%;
+        height: 80px;
+        margin: auto;
+        padding: 2% 0 0 2%;
+        text-align:center;
+	}
+	
+	#keyword {
+		width: 350px;
+	}
 </style>
 </head>
 <body>
@@ -26,6 +38,13 @@
 		if (session.getAttribute("userID") != null) {
 			userID = (String) session.getAttribute("userID");
 		} //로그인되면 userID에 해당 이이디가 담기고 로그인 안되면 null
+		if (userID == null) {
+			PrintWriter script = response.getWriter();
+			script.println("<script>");
+			script.println("alert('로그인이 필요합니다!')");
+			script.println("location.href = 'login.jsp'");
+			script.println("</script>");
+		}
 		int pageNumber = 1; //기본 페이지
 		if(request.getParameter("pageNumber") != null) { //페이지 번호 넘어오면 값을 넣어줌
 			pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
@@ -88,14 +107,22 @@
 			
 		</div>
 	</nav>
+	<div class="search-box">
+		<span>
+		<form method="post" name="searchField" action="searchBoard.jsp">
+			<input name="keyword" id="keyword" type="text" placeholder="검색할 키워드를 입력하세요"/>
+			<input type="submit" value="검색" onclick="send()"/>
+		</form>
+		</span>
+	</div>
 	<div class="container">
 		<div class="row">
 			<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
 			<thead>
 				<tr>
 					<th style="background-color: #eeeeee; text-align: center;">번호</th>
-					<th style="background-color: #eeeeee; text-align: center;">제목</th>
 					<th style="background-color: #eeeeee; text-align: center;">작성자</th>
+					<th style="background-color: #eeeeee; text-align: center;">제목</th>
 					<th style="background-color: #eeeeee; text-align: center;">작성날짜</th>
 				</tr>
 			</thead>
@@ -108,8 +135,8 @@
 				%>
 				<tr>
 					<td><%= list.get(i).getBoardID() %></td>
-					<td><a href="view.jsp?boardID=<%= list.get(i).getBoardID() %>"><%= list.get(i).getBoardTitle().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>") %></a></td>
 					<td><%= list.get(i).getUserID() %></td>
+					<td><a href="view.jsp?boardID=<%= list.get(i).getBoardID() %>"><%= list.get(i).getBoardTitle().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>") %></a></td>
 					<td><%= list.get(i).getBoardDate().substring(0, 11) + list.get(i).getBoardDate().substring(11, 13) + "시 " + list.get(i).getBoardDate().substring(14, 16) + "분" %></td>
 				</tr>
 				<%
@@ -130,7 +157,20 @@
 			%>
 			<a href="write.jsp" class="btn btn-primary pull-right">작성하기</a>
 		</div>
+		<div class="container" style="text-align:center">
+			<% 
+				int pages = (int) Math.ceil(boardDAO.getCount()/10)+1;
+				for (int i = 1; i <= pages; i++) { %>
+						<button type="button" onclick="location.href='board.jsp?pageNumber=<%=i %>'"><%=i %></button>
+			<% } %>
+		</div>
 	</div>
+	<script>
+		function send() {
+			var sb;
+			var keyword = document.
+		}
+	</script>
 	<script src = "https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src = "js/bootstrap.js"></script>
 </body>

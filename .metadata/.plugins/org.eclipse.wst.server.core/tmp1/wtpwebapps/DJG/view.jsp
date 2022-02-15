@@ -3,6 +3,9 @@
 <%@ page import="java.io.PrintWriter" %>
 <%@ page import="board.Board" %>
 <%@ page import="board.BoardDAO" %>
+<%@ page import="comment.Comment" %>
+<%@ page import="comment.CommentDAO" %>
+<%@ page import="java.util.ArrayList" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -116,6 +119,64 @@
 				</tr>
 			</tbody>
 			</table>
+			<div class="container">
+				<div class="row">
+					<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
+					<tbody>
+						<tr>
+							<td align="left">댓글</td>
+						</tr>
+						<tr>
+						<%
+							CommentDAO commentDAO = new CommentDAO();
+							ArrayList<Comment> list = commentDAO.getList(boardID);
+							for (int i = 0; i < list.size(); i++) {
+						%>
+						<div class="container">
+							<div class="row">
+								<table class="table table-striped" style="text-align:center; border: 1px solid #dddddd">
+									<tbody>
+										<tr>
+											<td align="left"><%=list.get(i).getUserID() %>&nbsp; &nbsp; &nbsp; &nbsp;<%= list.get(i).getCommentDate().substring(0, 11) + list.get(i).getCommentDate().substring(11, 13) + "시" + list.get(i).getCommentDate().substring(14, 16) + "분" %> </td>
+											<td colspan="2"></td>
+											<td align="right">
+											<%
+												if(list.get(i).getUserID() != null && list.get(i).getUserID().equals(userID)) {
+											%>
+													<a href="cmtUpdate.jsp?boardID=<%=boardID %>&commentID=<%=list.get(i).getCommentID() %>" class="btn btn-primary">수정</a>
+													<a href="cmtDeleteAction.jsp?boardID=<%=boardID %>&commentID=<%=list.get(i).getCommentID() %>" class="btn btn-primary">삭제</a>
+											<%
+												}
+											%>
+										</tr>
+										<tr>
+											<td colspan="5" align="left"><%=list.get(i).getCommentContent() %></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>	
+						</div>
+						<%
+							}
+						%>
+					</tbody>
+					</table> 
+				</div>
+			</div>
+			<div class="container">
+				<div class="form-group">
+				<form method="post" action="cmtCreateAction.jsp?boardID=<%=boardID %>">
+					<table class="table table-striped" style="text-align:center; border: 1px solid #dddddd; border-radius: 20%;">
+						<tr>
+							<td style="border-bottom:none;" valign="middle"><br><br><%=userID %></td>
+							<td><textarea class="form-control" maxlength="256" style="height: 100px; resize:none;" name="commentContent" placeholder="댓글 내용을 작성해주세요."></textarea></td>
+							<td><br><br><input type="submit" class="btn btn-primary pull-center" value="댓글 작성"></td>
+						</tr>
+					</table>
+				</form>
+				</div>
+			</div>
+			<div class="container">
 			<a href="board.jsp" class="btn btn-primary">목록</a>
 			<%
 				if(userID != null && userID.equals(board.getUserID())) {
@@ -125,6 +186,7 @@
 			<%
 				}
 			%>
+			</div>
 		</div>
 	</div>
 	<script src = "https://code.jquery.com/jquery-3.1.1.min.js"></script>

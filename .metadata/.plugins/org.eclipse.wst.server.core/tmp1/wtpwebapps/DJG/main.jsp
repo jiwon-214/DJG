@@ -96,13 +96,13 @@
 			<%-- 실질적인 사진을 넣어줌 --%>
 			<div class="carousel-inner">
 				<div class="item active">
-					<img src="images/3.jpg">
+					<img src="images/school1.jpg">
 				</div>
 				<div class="item">
-					<img src="images/4.jpg">
+					<img src="images/school2.jpg">
 				</div>
 				<div class="item">
-					<img src="images/5.jpg">
+					<img src="images/school3.jpg">
 				</div>
 			</div>
 			<%--사진을 넘길 수 있도록 --%>

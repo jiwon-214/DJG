@@ -51,6 +51,20 @@ public class BoardDAO {
 		return -1; //데이터베이스 오류
 	}
 	
+	public int getCount() {
+		String SQL = "SELECT COUNT(*) FROM Board";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				return rs.getInt(1);
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return -1;
+	}
+	
 	public int write(String boardTitle, String userID, String boardContent) {
 		String SQL = "INSERT INTO Board VALUES (?, ?, ?, ?, ?, ?)";
 		try {
@@ -77,6 +91,32 @@ public class BoardDAO {
 			pstmt.setInt(1, getNext() - (pageNumber - 1) * 10);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
+				Board board = new Board();
+				board.setBoardID(rs.getInt(1));
+				board.setBoardTitle(rs.getString(2));
+				board.setUserID(rs.getString(3));
+				board.setBoardDate(rs.getString(4));
+				board.setBoardContent(rs.getString(5));
+				board.setBoardAvailable(rs.getInt(6));
+				
+				list.add(board);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list; 
+	}
+	
+	public ArrayList<Board> getSearch(int pageNumber, String keyword) {
+		String SQL = "SELECT * FROM Board WHERE boardID < ? AND (boardTitle like ? OR boardContent like ?) AND boardAvailable = 1 ORDER BY boardID DESC LIMIT 10";
+		ArrayList<Board> list = new ArrayList<Board>();
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1, getNext() - (pageNumber - 1) * 10);
+			pstmt.setString(2, "%" + keyword + "%");
+			pstmt.setString(3, "%" + keyword + "%");
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
 				Board board = new Board();
 				board.setBoardID(rs.getInt(1));
 				board.setBoardTitle(rs.getString(2));
