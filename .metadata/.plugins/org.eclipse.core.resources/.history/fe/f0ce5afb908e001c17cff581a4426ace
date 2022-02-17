@@ -79,8 +79,8 @@ public class UserDAO {
 				 user.setUserID(rs.getString("userID"));
 				 user.setUserPassword(rs.getString("userPassword"));
 		         user.setUserName(rs.getString("userName"));
-		         user.setUserEmail(rs.getString("userEmail"));
 		         user.setUserMajor(rs.getString("userMajor"));
+		         user.setUserEmail(rs.getString("userEmail"));
 		         user.setUserYear(rs.getString("userYear"));
 		         user.setUserGrade(rs.getString("userGrade"));
 		         user.setUserLgrade(rs.getString("userLgrade"));

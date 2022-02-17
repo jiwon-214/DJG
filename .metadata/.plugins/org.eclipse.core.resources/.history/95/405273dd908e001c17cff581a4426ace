@@ -20,14 +20,6 @@
 		if (session.getAttribute("userID") != null) {
 			userID = (String) session.getAttribute("userID");
 		} //로그인되면 userID에 해당 이이디가 담기고 로그인 안되면 null
-		
-		if (userID == null) {
-			PrintWriter script = response.getWriter();
-			script.println("<script>");
-			script.println("alert('로그인이 필요합니다!')");
-			script.println("location.href = 'login.jsp'");
-			script.println("</script>");
-		}
 	%>
 	<nav class ="navbar navbar-default">
 		<div class = "navbar-header">
@@ -115,7 +107,7 @@
                </div>
                <div class="form-group">
                	전공
-                  <input type="text" class="form-control" name="userMajor" maxlength="50" readonly="readonly" value =<%=user.getUserMajor() %>>
+                  <input type="text" class="form-control" name="userMajor" maxlength="50" readonly="readonly" value =<%=request.getParameter("userMajor") %>>
                </div>
                <div class="form-group">
               	 학년
